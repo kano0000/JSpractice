@@ -76,23 +76,43 @@
 
 //モーダルのHTMLを新規作成
 //<div class="modal"></div>
-const modal = document.createElement("div");
-modal.classList.add("modal");
-//<div class="inner"></div>
-const inner = document.createElement("div");
-inner.classList.add("inner");
-//modalの中にinnerを入れる(画面の出力にもなる)
-modal.appendChild(inner);
+// const modal = document.createElement("div");
+// modal.classList.add("modal");
+// //<div class="inner"></div>
+// const inner = document.createElement("div");
+// inner.classList.add("inner");
+// //modalの中にinnerを入れる(画面の出力にもなる)
+// modal.appendChild(inner);
 
-//ボタンのクリックで出力するようにする
-//クリックするボタンのHTMLを取得する
-const btn = document.querySelector(".btn");
-btn.addEventListener("click",()=>{
-    //modalをbodyタグの子供として作成する
-    document.body.appendChild(modal);
-});
+// //ボタンのクリックで出力するようにする
+// //クリックするボタンのHTMLを取得する
+// const btn = document.querySelector(".btn");
+// btn.addEventListener("click",()=>{
+//     //modalをbodyタグの子供として作成する
+//     document.body.appendChild(modal);
+// });
 
-//モーダルをクリックしたらmodalの削除
-inner.addEventListener("click", () => {
-    document.body.removeChild(modal);
-});
+// //モーダルをクリックしたらmodalの削除
+// inner.addEventListener("click", () => {
+//     document.body.removeChild(modal);
+// });
+
+function createLines(){
+  let line = document.createElement("div");
+  line.setAttribute("class", "line");
+  document.body.appendChild(line);
+  
+  line.style.left = Math.random() * innerWidth + "px";
+  line.style.animationDuration = 3 + Math.random() * 12 + "s";
+  line.style.width = Math.random() * 12 + "px";
+  line.style.height = Math.random() * 12 + "px";
+  //光を消すまでの時間
+  setTimeout(function(){
+    document.body.removeChild(line);
+  }, 6000);
+}
+  //光を繰り返し
+setInterval(function(){
+  createLines();
+}, 500);
+
